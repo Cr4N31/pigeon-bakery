@@ -5,6 +5,7 @@ const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   function addToCart(product) {
     const quantity = product.quantity ?? 1;
@@ -32,10 +33,16 @@ export function CartProvider({ children }) {
     setCart([]);
   }
 
+  //cart quantity counter
   const cartCount = cart.reduce(
     (total, item) => total + item.quantity,
     0
   );
+
+  //Cart Toggle
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
+  const toggleCart = () => setIsCartOpen(prev => !prev);
 
   return (
     <CartContext.Provider
@@ -45,6 +52,10 @@ export function CartProvider({ children }) {
         removeFromCart,
         clearCart,
         cartCount,
+        isCartOpen,
+        openCart,
+        closeCart,
+        toggleCart,
       }}
     >
       {children}

@@ -7,7 +7,31 @@ const products = [
         img: MockImage,
         category: "Electronics and Gadgets",
         inStock: true,
-    }
+    },
+    {
+        id: 2,
+        title: "Iphone 17",
+        price: 1500,
+        img: MockImage,
+        category: "Electronics and Gadgets",
+        inStock: true,
+    },
+        {
+        id: 2,
+        title: "Iphone 17",
+        price: 1500,
+        img: MockImage,
+        category: "Electronics and Gadgets",
+        inStock: true,
+    },
+        {
+        id: 2,
+        title: "Iphone 17",
+        price: 1500,
+        img: MockImage,
+        category: "Electronics and Gadgets",
+        inStock: true,
+    },
 ]
 
 export default products
