@@ -1,22 +1,22 @@
 import HomeImg from '../../assets/icons/home.svg'
 import ProductImg from '../../assets/icons/product.svg'
-import CategoryImg from '../../assets/icons/category.svg';
+import CategoryImg from '../../assets/icons/category.svg'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
 function Sidebar({ currentPage, setCurrentPage }) {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false)
 
   const sidebarItems = [
     { id: 1, img: HomeImg, item: "Home" },
     { id: 2, img: ProductImg, item: "Products" },
     { id: 3, img: CategoryImg, item: "Category" },
-  ];
+  ]
 
-  // Trigger slide-in animation on mount
+  // Slide-in animation on mount
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
   return (
     <aside
@@ -42,51 +42,70 @@ function Sidebar({ currentPage, setCurrentPage }) {
       `}
     >
       <ul className="flex flex-col items-center gap-6">
-        {sidebarItems.map((sidebarItem) => (
-          <li key={sidebarItem.id}>
-            <button
-              onClick={() => setCurrentPage(sidebarItem.item)}
-              className="
-                flex 
-                flex-col 
-                items-center 
-                gap-1
-                text-gray-700
-                hover:text-teal-500
-                transition
-                focus:text-teal-500
-              "
-            >
-              {/* Icon */}
-              <div
-                className="
-                  w-10 
-                  h-10 
-                  flex 
-                  items-center 
-                  justify-center
-                  rounded-full
-                  hover:bg-teal-50
-                  transition
-                "
-              >
-                <img
-                  src={sidebarItem.img}
-                  alt={sidebarItem.item}
-                  className="w-6 h-6"
-                />
-              </div>
+        {sidebarItems.map((sidebarItem) => {
+          const isActive = currentPage === sidebarItem.item
 
-              {/* Label (hidden on small screens) */}
-              <p className="hidden md:block text-xs font-medium">
-                {sidebarItem.item}
-              </p>
-            </button>
-          </li>
-        ))}
+          return (
+            <li key={sidebarItem.id}>
+              <button
+                onClick={() => setCurrentPage(sidebarItem.item)}
+                className={`
+                  flex 
+                  flex-col 
+                  items-center 
+                  gap-1
+                  transition
+                  ${
+                    isActive
+                      ? "text-teal-500"
+                      : "text-gray-700 hover:text-teal-500"
+                  }
+                `}
+              >
+                {/* Icon */}
+                <div
+                  className={`
+                    w-10 
+                    h-10 
+                    flex 
+                    items-center 
+                    justify-center
+                    rounded-full
+                    transition
+                    ${
+                      isActive
+                        ? "bg-teal-50 ring-2 ring-teal-400"
+                        : "hover:bg-teal-50"
+                    }
+                  `}
+                >
+                  <img
+                    src={sidebarItem.img}
+                    alt={sidebarItem.item}
+                    className="w-6 h-6"
+                  />
+                </div>
+
+                {/* Label (hidden on small screens) */}
+                <p
+                  className={`
+                    hidden md:block text-xs font-medium
+                    ${
+                      isActive
+                        ? "text-teal-600"
+                        : "text-gray-500"
+                    }
+                  `}
+                >
+                  {sidebarItem.item}
+                </p>
+              </button>
+            </li>
+          )
+        })}
       </ul>
     </aside>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

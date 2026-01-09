@@ -9,10 +9,10 @@ function ProductLayout () {
     return(
         <div>
             <Header/>
-            <Sidebar setCurrentPage={setCurrentPage}/>
+            <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage}/>
             <main>
                 <div>
-                    { currentPage === "Home" && (<Home/>)}
+                    { currentPage === "Home" && (<Home setCurrentPage={setCurrentPage}/>)}
                     { currentPage === "Products" && (<Products/>)}
                     { currentPage === "Category" && (<Category/>)}
                 </div>

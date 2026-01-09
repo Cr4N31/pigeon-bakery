@@ -7,7 +7,7 @@ const products = [
         title: "Shattaf Handle",
         price: 50,
         img: Shattaf,
-        category: "Utility",
+        category: "Smart Bathroom Gadgets",
         inStock: true,
     },
     {
@@ -15,7 +15,7 @@ const products = [
         title: "Flushing Mechanism",
         price: 100,
         img: FlushingMechanism,
-        category: "Utiltiy",
+        category: "Smart Bathroom Gadgets",
         inStock: true,
     },
         {
@@ -23,7 +23,7 @@ const products = [
         title: "Toilet Seat",
         price: 90,
         img: ToiletSeat,
-        category: "Utility",
+        category: "Smart Bathroom Gadgets",
         inStock: true,
     },
 ]
