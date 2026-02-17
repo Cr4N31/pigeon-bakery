@@ -75,7 +75,7 @@ function Checkout({ user: initialUser }) {
       const body = encodeURIComponent(
         `Customer: ${name}\nEmail: ${email}\nAddress: ${address}\nDelivery: ${deliveryType}\n\nItems:\n${emailBody.items}\n\nTotal: ${emailBody.total}\n\nPlaced at: ${order.createdAt}`
       );
-      const receiver = import.meta.env.RECEIVER_EMAIL || 'cephascrane42@gmail.com';
+      const receiver = import.meta.env.RECEIVER_EMAIL || 'thepigeonbakery@gmail.com';
       window.location.href = `mailto:${receiver}?subject=${subject}&body=${body}`;
     }
 
