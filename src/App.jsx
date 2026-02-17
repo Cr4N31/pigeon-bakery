@@ -1,50 +1,32 @@
 import { CartProvider, useCart } from "./components/Cart/CartContext";
 import ProductLayout from "./components/Products/ProductLayout";
 import CartLayout from "./components/Cart/CartLayout";
-import AuthLayout from "./components/auth/AuthLayout";
-import { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import Checkout from "./components/Cart/Checkout";
+import OrderConfirmation from "./components/Cart/OrderConfirmation";
+import { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 function AppContent() {
   const { isCartOpen } = useCart();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-  }, []);
 
   return (
     <>
       <Routes>
-        <Route
-          path="/"
-          element={
-            user ? (
-              <ProductLayout user={user} setUser={setUser} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
+        <Route path="/" element={<ProductLayout />} />
 
-        <Route
-          path="/login"
-          element={
-            !user ? (
-              <AuthLayout setUser={setUser} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+        <Route path="/checkout" element={<Checkout />} />
+
+        <Route path="/order-confirmation" element={<OrderConfirmation />} />
       </Routes>
 
-      {isCartOpen && <CartLayout />}
+      {(() => {
+        const location = useLocation();
+        const hideOn = ['/checkout', '/order-confirmation'];
+        const isHidden = hideOn.some(p => location.pathname.startsWith(p));
+        return isCartOpen && !isHidden ? <CartLayout /> : null;
+      })()}
     </>
   );
 }

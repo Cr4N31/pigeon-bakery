@@ -1,5 +1,5 @@
 {
-  "name": "uniflow-ecommerce",
+  "name": "pigeon-bakery",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "@emailjs/browser": "^3.2.0",
     "aos": "^2.3.4",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",

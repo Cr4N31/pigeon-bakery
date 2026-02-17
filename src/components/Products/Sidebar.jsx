@@ -1,6 +1,5 @@
 import HomeImg from '../../assets/icons/home.svg'
 import ProductImg from '../../assets/icons/product.svg'
-import CategoryImg from '../../assets/icons/category.svg'
 
 import { useEffect, useState } from 'react'
 
@@ -10,7 +9,6 @@ function Sidebar({ currentPage, setCurrentPage }) {
   const sidebarItems = [
     { id: 1, img: HomeImg, item: "Home" },
     { id: 2, img: ProductImg, item: "Products" },
-    { id: 3, img: CategoryImg, item: "Category" },
   ]
 
   // Slide-in animation on mount
@@ -25,19 +23,16 @@ function Sidebar({ currentPage, setCurrentPage }) {
         top-1/2 
         -translate-y-1/2 
         left-4
-        bg-white 
+        bg-stone-50 
         rounded-full 
-        shadow-xl 
-        shadow-black/20
-        px-3 
+        shadow-md 
+        shadow-stone-300
+        px-4 
         py-8
         z-50
 
         transform
-        transition-all
-        duration-500
-        ease-out
-
+        transition transform opacity duration-500 ease-out
         ${mounted ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}
       `}
     >
@@ -55,28 +50,20 @@ function Sidebar({ currentPage, setCurrentPage }) {
                   items-center 
                   gap-1
                   transition
-                  ${
-                    isActive
-                      ? "text-teal-500"
-                      : "text-gray-700 hover:text-teal-500"
-                  }
+                  ${isActive ? "text-rose-400" : "text-stone-600 hover:text-rose-400"}
                 `}
               >
                 {/* Icon */}
                 <div
                   className={`
-                    w-10 
-                    h-10 
+                    w-12 
+                    h-12 
                     flex 
                     items-center 
                     justify-center
                     rounded-full
                     transition
-                    ${
-                      isActive
-                        ? "bg-teal-50 ring-2 ring-teal-400"
-                        : "hover:bg-teal-50"
-                    }
+                    ${isActive ? "bg-rose-50 ring-2 ring-stone-800" : "hover:bg-rose-50"}
                   `}
                 >
                   <img
@@ -90,11 +77,7 @@ function Sidebar({ currentPage, setCurrentPage }) {
                 <p
                   className={`
                     hidden md:block text-xs font-medium
-                    ${
-                      isActive
-                        ? "text-teal-600"
-                        : "text-gray-500"
-                    }
+                    ${isActive ? "text-stone-800" : "text-stone-500"}
                   `}
                 >
                   {sidebarItem.item}

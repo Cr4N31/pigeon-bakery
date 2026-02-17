@@ -1,19 +1,13 @@
 import { useState } from "react";
-import CartIcon from "../../assets/cart-shopping-svgrepo-com.svg";
+import CartIcon from "../../assets/icons/basket-svgrepo-com.svg";
+import pigeon from "../../assets/icons/pigeon-bakery.jpg"
 import { Link } from "react-router-dom";
 import { Menu, X, LogOut } from "lucide-react";
 import { useCart } from "../Cart/CartContext";
 
-function Header({ user, setUser }) {
+function Header() {
   const { toggleCart, cartCount, clearCart } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  function handleLogout() {
-    localStorage.removeItem("user");
-    setUser(null);
-    clearCart();
-    setMenuOpen(false);
-  }
 
   return (
     <header className="bg-white fixed top-0 left-0 right-0 border-b border-gray-200 z-50">
@@ -24,9 +18,7 @@ function Header({ user, setUser }) {
 
           {/* Logo + Mobile Controls */}
           <div className="flex items-center justify-between">
-            <h1 className="text-xl md:text-2xl font-bold text-teal-500">
-              Uniflo
-            </h1>
+            <img src={pigeon} className="w-16 h-16 rounded-full mr-2"/>
 
             {/* Mobile Cart + Hamburger */}
             <div className="flex items-center gap-4 md:hidden">
@@ -36,7 +28,7 @@ function Header({ user, setUser }) {
                     {cartCount}
                   </span>
                 )}
-                <img src={CartIcon} alt="cart" className="w-6 h-6" />
+                <img src={CartIcon} alt="cart" className="w-8 h-8" />
               </button>
 
               <button onClick={() => setMenuOpen(!menuOpen)}>
@@ -52,7 +44,7 @@ function Header({ user, setUser }) {
               placeholder="Search"
               className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
             />
-            <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition">
+            <button className="bg-black text-white px-4 py-2 rounded-md hover:border hover:bg-white hover:text-black transition">
               Search
             </button>
           </div>
@@ -60,28 +52,7 @@ function Header({ user, setUser }) {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-6">
 
-            {!user ? (
-              <Link
-                to="/login"
-                className="border border-teal-500 text-teal-500 px-4 py-2 rounded-md hover:bg-teal-500 hover:text-white transition"
-              >
-                Login
-              </Link>
-            ) : (
-              <>
-                <span className="font-medium text-gray-700">
-                  {user.username}
-                </span>
-
-                <button
-                  onClick={handleLogout}
-                  className="text-red-500 hover:text-red-600 transition"
-                  title="Logout"
-                >
-                  <LogOut size={22} />
-                </button>
-              </>
-            )}
+            <div />
 
             <button onClick={toggleCart} className="relative">
               {cartCount > 0 && (
@@ -98,29 +69,7 @@ function Header({ user, setUser }) {
         {menuOpen && (
           <div className="mt-4 md:hidden flex flex-col gap-3 border-t pt-4">
 
-            {!user ? (
-              <Link
-                to="/login"
-                className="border border-teal-500 text-teal-500 px-4 py-2 rounded-md hover:bg-teal-500 hover:text-white transition"
-                onClick={() => setMenuOpen(false)}
-              >
-                Login
-              </Link>
-            ) : (
-              <>
-                <span className="px-4 font-medium text-gray-700">
-                  {user.username}
-                </span>
-
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center gap-2 text-red-500 px-4 py-2"
-                >
-                  <LogOut size={20} />
-                  Logout
-                </button>
-              </>
-            )}
+            <div />
           </div>
         )}
 

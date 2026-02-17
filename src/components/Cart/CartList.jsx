@@ -1,7 +1,9 @@
 import { useCart } from './CartContext';
+import { useNavigate } from 'react-router-dom';
 
 function CartList() {
-  const { cart, clearCart, removeFromCart } = useCart();
+  const { cart, clearCart, removeFromCart, closeCart } = useCart();
+  const navigate = useNavigate();
 
   const total = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -49,17 +51,17 @@ function CartList() {
         Total: ${total}
       </div>
       <div>
-        <button  
-          className='bg-teal-500 text-white mt-4 transition-all ease px-4 py-2 hover:bg-white     disabled:opacity-50
-                    disabled:cursor-not-allowed
-                    disabled:hover:bg-teal-500
-                    disabled:hover:text-white
-                    disabled:hover:border-none hover:text-teal-500 hover:border hover:border-teal-500' 
-           disabled={!cart?.length} 
-          type='submit'
-          >
-            Checkout
-          </button>
+        <button
+          onClick={() => {
+            closeCart();
+            navigate('/checkout');
+          }}
+          className="bg-black text-white mt-4 transition-all ease px-4 py-2 hover:bg-pink-500 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-pink-500 disabled:hover:text-white disabled:hover:border-none hover:text-teal-500 hover:border hover:border-pink-500"
+          disabled={!cart?.length}
+          type="button"
+        >
+          Checkout
+        </button>
       </div>
     </div>
   );
